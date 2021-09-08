@@ -1,3 +1,4 @@
+#coding=utf8 -*--*-
 import pickle
 import pdb
 import numpy as np 
@@ -232,7 +233,7 @@ elif opt.model == 'NERLSTM_CRF_GCN':
         # report = classification_report(labels, preds)
         # print(report)
         tb = pt.PrettyTable()
-        tb.field_names = ["精确度", "召回率", "f1分数"]
+        tb.field_names = ["acc", "re", "f1"]
         tb.add_row([precision, recall, f1])
         print(tb)
         # precision = precision_score(labels, preds, average='micro')
@@ -271,14 +272,14 @@ elif opt.model == 'NERLSTM_CRF_GCN':
     print(precision, recall)
     f1 = f1_score(labels, preds, average='macro')
     with open('result.txt', 'a+') as fp:
-        fp.write("测试数据\n")
+        fp.write("test\n")
         fp.write(
             str(precision) + '\t' + str(recall) + '\t' + str(f1) + '\t' + str(aver_loss) + '\n')
 
     # # report = classification_report(labels, preds)
     # # print(report)
     tb = pt.PrettyTable()
-    tb.field_names = ["test精确度", "test召回率", "testf1分数"]
+    tb.field_names = ["testAcc", "testRe", "testf1"]
     tb.add_row([precision, recall, f1])
     print(tb)
     torch.save(model, 'result/model.pkl')
